@@ -1,4 +1,5 @@
 import streamlit as st
+import openai
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
@@ -58,7 +59,11 @@ def get_conversation_chain(vector_store):
     return conversation_chain
 
 def main():
-    load_dotenv()
+    # load_dotenv()
+
+    # Get the OpenAI API key from Streamlit secrets
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
+
     st.set_page_config(page_title="Chatbot", page_icon="🤖")
     st.write(css, unsafe_allow_html=True)
 
